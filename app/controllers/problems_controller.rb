@@ -15,6 +15,10 @@ class ProblemsController < ApplicationController
     end
   end
 
+  def show
+    @problem = Problem.find(params[:id])
+  end
+
   def index
     @problems = current_user.problems
   end

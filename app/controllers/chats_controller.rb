@@ -17,7 +17,7 @@ class ChatsController < ApplicationController
   end
 
   def create
-    @problem = current_user.problems.find(params[:chat][:problem_id])
+    @problem = Problem.find(params[:problem_id])
     @chat = Chat.new
     @chat.user = current_user
     @chat.problem = @problem

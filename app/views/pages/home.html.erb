@@ -1,4 +1,4 @@
-<div class="container mb-5 ">   
+<div class="container mb-5 ">
     <div class="mt-5 text-center rounded-2 mx-5 ">
         <div class="header p-4 m-3 ">
             <h1 class="m-3">Welcome to your pocket psychologist</h1>
@@ -12,3 +12,12 @@
         <div class="btn m-3 ">Login</div>
     </div>
 </div>
+
+
+<% if current_user %>
+
+  <h2>All your 99 problems:</h2>
+  <% current_user.problems.each do |problem| %>
+    <p><%= link_to "View Problem ##{problem.id}", problem_path(problem) %></p>
+  <% end %>
+<% end %>

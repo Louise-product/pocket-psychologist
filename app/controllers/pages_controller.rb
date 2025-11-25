@@ -5,4 +5,15 @@ class PagesController < ApplicationController
 
   def new
   end
+
+  def dashboard
+    @problems = Problem.new
+    @chat = Chat.new
+    
+  end
+
+  private
+   def problems_params
+     
+   end
 end

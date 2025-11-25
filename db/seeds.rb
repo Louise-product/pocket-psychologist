@@ -13,19 +13,19 @@
 # db/seeds.rb
 # 1. Clean the database 🗑️
 puts "Cleaning database..."
-#User.destroy_all
+Message.destroy_all
+Chat.destroy_all
+Problem.destroy_all
+User.destroy_all
 
-#2. Create the instances 🏗️
+#2. Create the users 🏗️
  puts "Creating users..."
- User.create!(email: "hdjfodj@sdsds", password: "1234ds56") 
- User.create!(email: "hdjsaadd@dfodjsdsds", password: "123ds456")
+ User.create!(email: "test@test.com", password: "123456")
+ User.create!(email: "test1@test.com", password: "123456")
  puts "Created 2"
- User.create!(email: "hdjfodjs@dsdsssds", password: "1sd23456")
+ User.create!(email: "test2@test.com", password: "123456")
  puts "Created 3"
- User.create!(email: "hdjfo@djsdaadxdsds", password: "12dw3456")
- puts "Created 4"
- User.create!(email: "hdjfo@djdadeaasdsds", password: "1234qwe56")
-#puts "Created 5"
+ User.create!(email: "test3@test.com", password: "123456")
 
 
 puts "Finished! Created users."
@@ -40,11 +40,7 @@ puts "Creating problems..."
 puts "create #{all_users.count} users, each with 2 problems"
 puts "created too manz problems"
 
- all_problems = Problem.all
+all_problems = Problem.all
 all_problems.each do |problem|
-  Chat.create!(problem_id: 2, user_id: 2)
-  #  Chat.create!(problem: problem, user: user)
- 
-  
  Chat.create!(problem: problem, user: problem.user)
 end

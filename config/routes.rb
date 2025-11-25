@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {registrations: 'registrations'} do
+    root to: "users/registrations#update"
+  end
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -8,7 +10,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
   get "pages/new", to: "pages#new"
 
-  get "update-profile", to: "users#update", as: :user_root
+  # get "update-profile", to: "registrations#update", as: :user_root
 
   # Defines the root path route ("/")
   # root "posts#index"

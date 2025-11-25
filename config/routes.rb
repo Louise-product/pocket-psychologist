@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
   get "pages/new", to: "pages#new"
 
+  get "update-profile", to: "users#update", as: :user_root
+
   # Defines the root path route ("/")
   # root "posts#index"
 end

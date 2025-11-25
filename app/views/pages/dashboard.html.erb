@@ -1,5 +1,12 @@
 <h1>hello <%= current_user.email %></h1>
 
-<ul><% @problems.each do |problem| %></ul>
-    <li><%= problem.title %>:<%=  "create new chat" %></li>
+<% @problems.each do |problem| %>
+    <div>
+        <h2><%= problem.title %></h2>
+        <hr>
+        <% problem.chats.each do |chat| %>
+          <p><%= chat.id %></p>
+
+        <% end %>
+    </div>
 <% end %>

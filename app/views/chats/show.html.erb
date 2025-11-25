@@ -1,0 +1,18 @@
+<h1>Chat about: <%= @chat.problem.title %></h1>
+
+
+
+<h2>Messages:</h2>
+<% @chat.messages.order(:created_at).each do |message| %>
+  <p>
+    <strong><%= message.role.capitalize %>:</strong>
+    <%= message.content %>
+    <br>
+    <small><%= message.created_at.strftime("%d%d%d") %></small>
+  </p>
+<% end %>
+
+<p>
+  <%#= link_to "Send a Message", new_message_path(chat_id: @chat.id) %> |
+  <%= link_to "Back to Chats", problem_path(@chat.problem) %>
+</p>

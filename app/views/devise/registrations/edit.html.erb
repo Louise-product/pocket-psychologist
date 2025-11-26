@@ -7,8 +7,7 @@
     <div class="form-inputs">
       <%= f.input :age %>
       <%= f.input :gender, collection: [ "female", "male", "non-binary", "other" ] %>
-
-
+      <%= f.input :mood, :label => "How do you feel?", collection: [ "very good", "good", "fine", "not good", "very bad" ] %>
       <%= f.input :context, as: :text, hint: "fill in everything you think the chatbot should know, think about history, family etc"%>
       <%= f.input :current_password,
                   hint: "we need your current password to confirm your changes",

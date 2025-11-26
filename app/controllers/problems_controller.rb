@@ -6,10 +6,11 @@ class ProblemsController < ApplicationController
   end
 
   def create
-    @problem = current_user.problems.build(problem_params)
+    @problem = current_user.problems.new(problem_params)
 
     if @problem.save
-      redirect_to new_chat_path(problem_id: @problem.id), notice: "Problem created! Now start your chat."
+      @chat = Chat.create(problem: @problem, user: current_user)
+      redirect_to @chat, notice: "Problem created! Now start your chat."
     else
       render :new, status: :unprocessable_entity
     end

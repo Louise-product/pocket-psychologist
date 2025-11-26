@@ -1,12 +1,13 @@
-<h1>hello <%= current_user.email %></h1>
-
-<% @problems.each do |problem| %>
+<div class="container p-5">
+  <hr>
+  <h2>Your problems <%= current_user.email %></h2>
+  <% @problems.each do |problem| %>
     <div>
-        <h2><%= problem.title %></h2>
-        <hr>
-        <% problem.chats.each do |chat| %>
-          <p><%= chat.id %></p>
-
-        <% end %>
+      <h3><%= problem.title %></h3>
+      <hr>
+      <% problem.chats.each do |chat| %>
+        <h5><i class="fa-regular fa-message"></i>  <%= chat.messages.first.content.truncate(20, separator: " ") %></h5>
+      <% end %>
     </div>
-<% end %>
+  <% end %>
+</div>

@@ -1,25 +1,26 @@
-<%= link_to " #{@chat.problem.title}", problem_path(@chat.problem) %>
+<div class="container home-page-container">
+  <%= link_to " #{@chat.problem.title}", problem_path(@chat.problem) %>
 
-<h1>Chat about: <%= @chat.problem.title %></h1>
-
-
-<h2>Your messages:</h2>
-<% @chat.messages.order(:created_at).each do |message| %>
-  <p>
-    <strong><%= message.role.capitalize %>:</strong>
-    <%= message.content %>
-    <br>
-    <small><%= message.created_at.strftime("%d%d%d") %></small>
-  </p>
-<% end %>
+  <h1>Chat about: <%= @chat.problem.title %></h1>
 
 
-
-  <%= link_to "Back to Chats", problem_path(@chat.problem) %>
-</p>
-<div id="new_message_container">
-  <%= simple_form_for [@chat, @message] do |f| %>
-    <%= f.input :content, label: "Ask a question", required: true, placeholder: "How are you feeling today sweetie? Tell me what is wrong?" %>
-    <%= f.button :submit, 'Ask LLM', class: 'btn btn-primary' %>
+  <h2>Your messages:</h2>
+  <% @chat.messages.order(:created_at).each do |message| %>
+    <p>
+      <strong><%= message.role.capitalize %>:</strong>
+      <%= raw(render_markdown(message.content)) %>
+      <br>
+      <small><%= message.created_at.strftime("%d%d%d") %></small>
+    </p>
   <% end %>
+
+
+    <%= link_to "Back to Chats", problem_path(@chat.problem) %>
+  </p>
+  <div id="new_message_container">
+    <%= simple_form_for [@chat, @message] do |f| %>
+      <%= f.input :content, label: "Ask a question", required: true, placeholder: "How are you feeling today sweetie? Tell me what is wrong?" %>
+      <%= f.button :submit, 'Ask LLM', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
 </div>

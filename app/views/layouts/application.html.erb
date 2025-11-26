@@ -15,6 +15,19 @@
      <p class="alert"><%= alert %></p>
      <%= render "layouts/components/navbar"%>
 
-    <%= yield %>
+     <div class="main-content">
+        <% if @side_nav %>
+          <div class="row">
+            <div class="col-4">
+              <%= render "shared/side_nav", problems: @problems %>
+            </div>
+            <div class="col-8">
+              <%= yield %>
+            </div>
+          </div>
+        <% else %>
+          <%= yield %>
+        <% end %>
+     </div>
   </body>
 </html>

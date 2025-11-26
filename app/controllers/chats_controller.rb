@@ -30,6 +30,7 @@ class ChatsController < ApplicationController
       )
       redirect_to chat_path(@chat), notice: "Chat started!"
     else
+      puts "hello"
       @problems = current_user.problems
       render :new, status: :unprocessable_entity
     end

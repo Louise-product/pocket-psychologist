@@ -7,13 +7,7 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    @problems = Problem.new
-    @chat = Chat.new
-    
+    @problems = current_user.problems
   end
 
-  private
-   def problems_params
-     
-   end
 end

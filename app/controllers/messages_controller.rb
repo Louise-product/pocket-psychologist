@@ -2,6 +2,8 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_chat
 
+  SYSTEM_PROMPT = "You are a mental health coach"
+
   def new
     @message = @chat.messages.new
   end
@@ -26,5 +28,9 @@ class MessagesController < ApplicationController
 
   def message_params
     params.require(:message).permit(:content)
+  end
+
+  def instruction_context
+    [SYSTEM_PROMPT, current_user.context].compact.join("\n\n")
   end
 end

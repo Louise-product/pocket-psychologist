@@ -1,8 +1,9 @@
+<%= link_to " #{@chat.problem.title}", problem_path(@chat.problem) %>
+
 <h1>Chat about: <%= @chat.problem.title %></h1>
 
 
-
-<h2>Messages:</h2>
+<h2>Your messages:</h2>
 <% @chat.messages.order(:created_at).each do |message| %>
   <p>
     <strong><%= message.role.capitalize %>:</strong>
@@ -12,7 +13,13 @@
   </p>
 <% end %>
 
-<p>
-  <%#= link_to "Send a Message", new_message_path(chat_id: @chat.id) %> |
+
+
   <%= link_to "Back to Chats", problem_path(@chat.problem) %>
 </p>
+<div id="new_message_container">
+  <%= simple_form_for [@chat, @message] do |f| %>
+    <%= f.input :content, label: "Ask a question", required: true, placeholder: "How are you feeling today sweetie? Tell me what is wrong?" %>
+    <%= f.button :submit, 'Ask LLM', class: 'btn btn-primary' %>
+  <% end %>
+</div>

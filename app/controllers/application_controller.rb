@@ -4,10 +4,14 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if resource.completed
-      super
+      return new_problem_path
     else
       return edit_user_registration_path
     end
+  end
+
+  def user_root_path
+    new_problem_path
   end
 
   private

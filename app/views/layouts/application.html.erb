@@ -11,7 +11,7 @@
   </head>
   <body>
     <%= render "components/navbar" %>
-    <div class="main-content">
+    <div class="main-content <%= controller_name %> <%= action_name %>">
       <%= yield %>
     </div>
   </body>

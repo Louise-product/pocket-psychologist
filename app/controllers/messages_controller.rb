@@ -25,7 +25,7 @@ class MessagesController < ApplicationController
       Message.create(chat: @chat, content: response.content, role: "assistant")
       # @chat.generate_title_from_user_messages
 
-      redirect_to @chat, notice: "Message sent!"
+      redirect_to @chat
     else
       render :new, status: :unprocessable_entity
     end

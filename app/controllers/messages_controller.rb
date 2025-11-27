@@ -21,6 +21,7 @@ class MessagesController < ApplicationController
 
     if @message.save
       ruby_llm_chat = RubyLLM.chat.with_temperature(0.7)
+      # build_conversation_history
       response = ruby_llm_chat.with_instructions(instruction_context).ask(@message.content)
       Message.create(chat: @chat, content: response.content, role: "assistant")
       # @chat.generate_title_from_user_messages

@@ -18,11 +18,15 @@
      <div class="main-content">
       <%= render "components/navbar" %>
         <% if @side_nav %>
-          <div class="row">
-            <div class="col-3">
+          <div class="row" data-controller="toggle">
+            <div class="col-md-2 sidebar pt-1 pb-1" data-toggle-target="hideable">
               <%= render "shared/side_nav", problems: @problems %>
             </div>
-            <div class="col-8">
+            <div class="col-md-10 my-4">
+              <%= link_to "#", class: " nav-link text-dark",
+              data: { action: "click->toggle#call", toggle_target: "show" } do %>
+                <i class="ms-2 fa-regular fa-square-caret-right"></i>
+              <% end %>
               <%= yield %>
             </div>
           </div>

@@ -4,36 +4,43 @@
   <%# this is where we see chat about: and the title of the current problem %>
   <h1 class="chat-title">Chat about: <%= @chat.problem.title %></h1>
 
-
   <h2 class="messages-heading">Your conversation:</h2>
 
   <%# this is the wrapper where I see the chat %>
-  <%# render_markdown converts teh weird text into HTML %>
-    <div class="messages-list">
-      <% @chat.messages.order(:created_at).each do |message| %>
-        <div class="message <%= message.role %>">
-          <p class="message-role"><strong><%= message.role.capitalize %>:</strong></p>
 
-          <p class="message-content"><%= raw(render_markdown(message.content)) %></p>
-          <small class="message-time"><%= message.created_at.strftime("%d %b %Y %H:%M") %></small>
-        </div>
-      <% end %>
-    </div>
+  <%# render_markdown converts the weird text into HTML %>
+  <div class="messages-list">
+    <% @chat.messages.order(:created_at).each do |message| %>
+      <div class="message <%= message.role %>">
+        <p class="message-role"><strong><%= message.role.capitalize %>:</strong></p>
+ 
+        <p class="message-content"><%= raw(render_markdown(message.content)) %></p>
+        <small class="message-time"><%= message.created_at.strftime("%d %b %Y %H:%M") %></small>
+      </div>
+    <% end %>
+  </div>
 
-  <%= link_to problem_path(@chat.problem), class: "back-link" do %>
+  <div id="loading" style="display:none;">I am thinking...</div> <!-- Loading Indicator -->
+
+  <%= link_to new_problem_path, class: "back-link" do %>
     <i class="fa fa-arrow-left"></i> Back to Chats
   <% end %>
-
 
   <div id="new_message_container" class="new-message-form">
     <%= simple_form_for [@chat, @message] do |f| %>
       <% prefilled = @chat.messages.any? ? "" : @chat.problem.content %>
-      <%= f.input :content, label: "Ask a question",
-      required: true,
-      input_html: { value: prefilled}%>
+      <%= f.input :content, label: "Ask a question", required: true, input_html: { value: prefilled } %>
       <%= f.button :submit, 'Ask your Mental health Assistant', class: 'btn btn-primary submit-btn' %>
 
     <% end %>
   </div>
 </div>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('.new-message-form form'); // Adjust this selector if your form structure is different
+    form.addEventListener('submit', function() {
+      document.getElementById('loading').style.display = 'block'; // Show loading indicator
+    });
+  });
+</script>

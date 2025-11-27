@@ -18,16 +18,22 @@ class MessagesController < ApplicationController
     problem_id = @chat[:problem_id]
     @problem = Problem.find(problem_id)
 
-
     if @message.save
-      ruby_llm_chat = RubyLLM.chat.with_temperature(0.7)
-      response = ruby_llm_chat.with_instructions(instruction_context).ask(@message.content)
+      @ruby_llm_chat = RubyLLM.chat.with_temperature(0.7)
+      build_conversation_history
+      response = @ruby_llm_chat.with_instructions(instruction_context).ask(@message.content)
       Message.create(chat: @chat, content: response.content, role: "assistant")
       # @chat.generate_title_from_user_messages
 
       redirect_to @chat, notice: "Message sent!"
     else
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def build_conversation_history
+    @chat.messages.each do |message|
+      @ruby_llm_chat.add_message(message)
     end
   end
 
@@ -48,8 +54,6 @@ class MessagesController < ApplicationController
   def message_params
     params.require(:message).permit(:content)
   end
-
-
 
   def instruction_context
     [SYSTEM_PROMPT, current_user.context, @problem.content].compact.join("\n\n")

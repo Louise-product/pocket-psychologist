@@ -26,7 +26,10 @@
 
   <div id="new_message_container" class="new-message-form">
     <%= simple_form_for [@chat, @message] do |f| %>
-      <%= f.input :content, label: "Ask a question", required: true, placeholder: "Hi there 👋 Really glad you are here. Most people feel a little unsure during their first conversation, totally normal. Tell me a bit about how you’re feeling today. What’s the first thing you’d like to talk about? 💭" %>
+      <% prefilled = @chat.messages.any? ? "" : @chat.problem.content %>
+      <%= f.input :content, label: "Ask a question",
+      required: true,
+      input_html: { value: prefilled}%>
       <%= f.button :submit, 'Ask your Mental health Assistant', class: 'btn btn-primary submit-btn' %>
     <% end %>
   </div>

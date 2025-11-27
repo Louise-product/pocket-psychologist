@@ -1,28 +1,30 @@
 <div class="d-flex">
-  <div class="welcome-container">
-    <p>This is a test</p>
+  <div class="welcome-container d-flex align-items-center">
+    <div class="mt-5 text-center rounded-2 mx-5">
+      <div class="header p-4 m-3 ">
+          <h1 class="m-3">Fill in your information</h1>
+          <p>To provide you with the best possible help we ask you to fill in some extra information about yourself. This will give our bot the context it needs to help you.</p>
+      </div>
+    </div>
   </div>
-  <div class="signup-container">
+  <div class="signup-container d-flex align-items-center justify-content-center">
 <% if !resource.completed %>
-  <h2 class="pt-5">Add contextual information</h2>
-  <p>To have our chatbot help you as best as possible, we need some additional information</p>
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}) do |f| %>
     <div class="form-inputs">
       <div class="d-flex gap-3">
       <%= f.input :age %>
-      <%= f.input :gender, collection: [ "female", "male", "non-binary", "other" ] %>
+      <div class="gender-input"><%= f.input :gender, collection: [ "female", "male", "non-binary", "other" ] %></div>
       </div>
       <div>
       <%= f.input :mood, :label => "How do you feel?", collection: [ "very good", "good", "fine", "not good", "very bad" ] %>
     </div>
-      <%= f.input :context, as: :text, hint: "fill in everything you think the chatbot should know, think about history, family etc"%>
+      <%= f.input :context, as: :text%>
       <%= f.input :current_password,
-                  hint: "we need your current password to confirm your changes",
                   required: false,
                   input_html: { autocomplete: "current-password" }%>
     </div>
     <div class="form-actions">
-      <%= f.button :submit, "Update", class: "btn btn-primary mb-5"%>
+      <%= f.button :submit, "Update", class: "button-on-form"%>
     </div>
   <% end %>
   </div>

@@ -10,12 +10,13 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import "pages/show_chat_page"; 
 
 
 
 body {
     background: #EEAECA;
-    background: radial-gradient(circle,  
+    background: radial-gradient(circle,
 rgba(238, 174, 202, 1) 0%,
  rgba(148, 187, 233, 1) 100%);
 }

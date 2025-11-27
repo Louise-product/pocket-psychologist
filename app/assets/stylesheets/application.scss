@@ -12,9 +12,26 @@
 @import "pages/index";
 @import "pages/show_chat_page"; 
 
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    height: 100%;
+}
+
+.main-content {
+    height: 100%;
+}
+
 body {
     background: #EEAECA;
     background: radial-gradient(circle,
 rgba(238, 174, 202, 1) 0%,
  rgba(148, 187, 233, 1) 100%);
+}
+
+a {
+    color: #A376A2;
 }

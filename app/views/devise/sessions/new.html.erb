@@ -1,3 +1,17 @@
+
+
+<div class="d-flex h-100">
+  <div class="welcome-container">
+      <div class="mt-5 text-center rounded-2 mx-5 ">
+      <div class="header p-4 m-3 ">
+          <h1 class="m-3">Welcome to back</h1>
+          <h2>Let’s continue your mental wellness journey.</h2>
+          <p>Pick up where you left off—your space for reflection, balance, and emotional clarity is waiting.</p>
+      </div>
+    </div>
+  </div>
+  <div class="login-container">
+
 <h2>Log in</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -12,9 +26,11 @@
     <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
   </div>
 
-  <div class="form-actions">
+  <div class="btn btn form-actions">
     <%= f.button :submit, "Log in" %>
   </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+ </div>
+</div>

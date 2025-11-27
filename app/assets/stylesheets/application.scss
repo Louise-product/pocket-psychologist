@@ -13,11 +13,11 @@
 
 
 html {
-    height: 100%;
+  height: 100%;
 }
 
 .main-content {
-    height: 100%;
+  height: 100%;
 }
 
 body {
@@ -30,5 +30,9 @@ rgba(238, 174, 202, 1) 0%,
 }
 
 a {
-    color: #A376A2;
+  color: #a376a2;
+}
+
+.notice {
+  display: none;
 }

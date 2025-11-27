@@ -21,7 +21,6 @@ class MessagesController < ApplicationController
       ruby_llm_chat = RubyLLM.chat
       response = ruby_llm_chat.with_instructions(instruction_context).ask(@problem.content)
       Message.create(chat: @chat, content: response.content, role: "assistant")
-
       # @chat.generate_title_from_user_messages
 
       redirect_to @chat, notice: "Message sent!"
@@ -29,6 +28,14 @@ class MessagesController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+    # def prefilled
+    #   if @chat.messages.first
+    #     @prefilled = @chat.message.content
+    #   else
+    #     @prefilled = ""
+    #   end
+    # end
 
   private
 
@@ -40,8 +47,9 @@ class MessagesController < ApplicationController
     params.require(:message).permit(:content)
   end
 
-  def instruction_context
 
+
+  def instruction_context
 
     [SYSTEM_PROMPT, current_user.context, @problem.content].compact.join("\n\n")
   end

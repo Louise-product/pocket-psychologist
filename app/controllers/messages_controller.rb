@@ -17,10 +17,6 @@ class MessagesController < ApplicationController
     problem_id = @chat[:problem_id]
     @problem = Problem.find(problem_id)
 
-
-
-    # somewhere here, when I click on ask mental health , its triggered here , so I can add the thinking logic here, sleep command
-
     if @message.save
       ruby_llm_chat = RubyLLM.chat
       response = ruby_llm_chat.with_instructions(instruction_context).ask(@problem.content)

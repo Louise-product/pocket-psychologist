@@ -11,6 +11,7 @@
 <% if !resource.completed %>
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}) do |f| %>
     <div class="form-inputs">
+      <%= f.input :firstname %>
       <div class="d-flex gap-3">
       <%= f.input :age %>
       <div class="gender-input"><%= f.input :gender, collection: [ "female", "male", "non-binary", "other" ] %></div>

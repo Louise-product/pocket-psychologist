@@ -9,7 +9,7 @@ class Message < ApplicationRecord
   scope :by_assistant, -> { where(role: "assistant") }
 
 
-  MAX_USER_MESSAGES = 10
+  MAX_USER_MESSAGES = 20
 
   validate :user_message_limit, if: -> { role == "user" }
 

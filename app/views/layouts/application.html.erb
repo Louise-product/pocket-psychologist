@@ -13,12 +13,13 @@
 
      <p class="notice"><%= notice %></p>
      <p class="alert"><%= alert %></p>
-     <%= render "layouts/components/navbar"%>
+     
 
      <div class="main-content">
+      <%= render "components/navbar" %>
         <% if @side_nav %>
           <div class="row">
-            <div class="col-4">
+            <div class="col-3">
               <%= render "shared/side_nav", problems: @problems %>
             </div>
             <div class="col-8">
@@ -29,11 +30,5 @@
           <%= yield %>
         <% end %>
      </div>
-
-    <%= render "components/navbar" %>
-    <div class="main-content">
-      <%= yield %>
-    </div>
-
   </body>
 </html>

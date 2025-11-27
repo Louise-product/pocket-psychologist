@@ -5,10 +5,16 @@
     <h2>Your problems </h2>
     <% current_user.problems.each do |problem| %>
       <div>
-        <h3><%= link_to"#{problem.title}", problem_path(problem) %></h3>
+        <h3><%= link_to"#{problem.title}", problem %></h3>
         <hr>
         <% problem.chats.each do |chat| %>
-          <h5 class="text-decoration-none"><i class="fa-regular fa-message"></i>  <%= link_to"#{chat.messages.first.content.truncate(18, separator: " ")}", chat_path(chat) %></h5>
+          <h5 class="text-decoration-none"><i class="fa-regular fa-message"></i>
+            <% if chat.messages.by_user.any?  %>
+              <%= link_to"#{chat.messages.by_user.first.content.truncate(18, separator: " ")}", chat_path(chat) %>
+            <% else %>
+              <%= link_to "New Chat", chat_path(chat) %>
+            <% end %>
+          </h5>
         <% end %>
       </div>
     <% end %>

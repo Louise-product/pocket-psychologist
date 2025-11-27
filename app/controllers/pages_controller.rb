@@ -13,6 +13,7 @@ class PagesController < ApplicationController
 
   def dashboard
     @problems = current_user.problems
+   
   end
 
 end

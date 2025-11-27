@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_problems
 
   def after_sign_in_path_for(resource)
     if resource.completed
@@ -12,6 +13,10 @@ class ApplicationController < ActionController::Base
 
   def user_root_path
     new_problem_path
+  end
+
+  def set_problems
+    @problems = Problem.all
   end
 
   private

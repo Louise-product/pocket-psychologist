@@ -3,6 +3,7 @@ class ProblemsController < ApplicationController
 
   def new
     @problem = current_user.problems.new
+    @side_nav = true
   end
 
   def create

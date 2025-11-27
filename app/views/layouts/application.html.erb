@@ -10,9 +10,25 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <%= render "components/navbar" %>
-    <div class="main-content">
-      <%= yield %>
-    </div>
+
+     <p class="notice"><%= notice %></p>
+     <p class="alert"><%= alert %></p>
+     
+
+     <div class="main-content">
+      <%= render "components/navbar" %>
+        <% if @side_nav %>
+          <div class="row">
+            <div class="col-3">
+              <%= render "shared/side_nav", problems: @problems %>
+            </div>
+            <div class="col-8">
+              <%= yield %>
+            </div>
+          </div>
+        <% else %>
+          <%= yield %>
+        <% end %>
+     </div>
   </body>
 </html>

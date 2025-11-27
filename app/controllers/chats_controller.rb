@@ -14,6 +14,7 @@ class ChatsController < ApplicationController
   def new
     @chat = Chat.new
     @problems = current_user.problems
+   
   end
 
   def create
@@ -40,6 +41,7 @@ class ChatsController < ApplicationController
     @chat = current_user.chats.find(params[:id])
     @messages = @chat.messages.order(:created_at)
     @message = Message.new
+    @side_nav = true
   end
 
   private

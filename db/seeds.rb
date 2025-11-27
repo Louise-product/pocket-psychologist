@@ -42,5 +42,12 @@ puts "created too manz problems"
 
 all_problems = Problem.all
 all_problems.each do |problem|
- Chat.create!(problem: problem, user: problem.user)
+ Chat.create!(problem: problem, user: problem.user, title: "hello world")
+  Chat.create!(problem: problem, user: problem.user, title: "bye bye world")  
+end
+
+all_chats = Chat.all
+all_chats.each do |chat|
+  Message.create!(content: "hy can you help me", role:"user",chat: chat)
+  Message.create!(content: "yes, tell me more about you", role:"bot", chat: chat)
 end

@@ -24,10 +24,16 @@ class MessagesController < ApplicationController
       response = @ruby_llm_chat.with_instructions(instruction_context).ask(@message.content)
       Message.create(chat: @chat, content: response.content, role: "assistant")
       # @chat.generate_title_from_user_messages
-
-      redirect_to @chat, notice: "Message sent!"
+      # Respond to Turbo Stream requests
+      respond_to do |format|
+        format.turbo_stream # renders `app/views/messages/create.turbo_stream.erb`
+        format.html { redirect_to chat_path(@chat) }
+      end
     else
-      render :new, status: :unprocessable_entity
+      respond_to do |format|
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("new_message", partial: "messages/form", locals: { chat: @chat, message: @message }) }
+        format.html { render "chats/show", status: :unprocessable_entity }
+      end
     end
   end
 

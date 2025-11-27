@@ -17,7 +17,6 @@ class MessagesController < ApplicationController
     problem_id = @chat[:problem_id]
     @problem = Problem.find(problem_id)
 
-
     if @message.save
       ruby_llm_chat = RubyLLM.chat
       response = ruby_llm_chat.with_instructions(instruction_context).ask(@problem.content)

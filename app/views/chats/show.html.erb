@@ -13,6 +13,7 @@
     <% @chat.messages.order(:created_at).each do |message| %>
       <div class="message <%= message.role %>">
         <p class="message-role"><strong><%= message.role.capitalize %>:</strong></p>
+
         <p class="message-content"><%= raw(render_markdown(message.content)) %></p>
         <small class="message-time"><%= message.created_at.strftime("%d %b %Y %H:%M") %></small>
       </div>
@@ -28,6 +29,7 @@
     <%= simple_form_for [@chat, @message] do |f| %>
       <%= f.input :content, label: "Ask a question", required: true, placeholder: "Hi there 👋 Really glad you are here. Most people feel a little unsure during their first conversation, totally normal. Tell me a bit about how you’re feeling today. What’s the first thing you’d like to talk about? 💭" %>
       <%= f.button :submit, 'Ask your Mental health Assistant', class: 'btn btn-primary submit-btn' %>
+      
     <% end %>
   </div>
 </div>

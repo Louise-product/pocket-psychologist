@@ -1,5 +1,8 @@
-<div class="container align-items-center">
-
+<div class="d-flex">
+  <div class="welcome-container">
+    <p>This is a test</p>
+  </div>
+  <div class="signup-container">
 <% if !resource.completed %>
   <h2 class="pt-5">Add contextual information</h2>
   <p>To have our chatbot help you as best as possible, we need some additional information</p>
@@ -61,6 +64,6 @@
 
 <div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
 
-
+</div>
 </div>
 </div>

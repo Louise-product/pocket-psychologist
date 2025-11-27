@@ -10,13 +10,10 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
-
-     <p class="notice"><%= notice %></p>
-     <p class="alert"><%= alert %></p>
-     
-
-     <div class="main-content">
-      <%= render "components/navbar" %>
+     <div class="main-content <%= controller_name %> <%= action_name %>">
+        <%= render "components/navbar" %>
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
         <% if @side_nav %>
           <div class="row position-relative" data-controller="toggle">
               <%= link_to "#", class: " d-none nav-link text-dark",

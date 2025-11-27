@@ -1,9 +1,9 @@
-<div class="d-flex">
+<div class="d-flex h-100">
   <div class="welcome-container">
       <div class="mt-5 text-center rounded-2 mx-5 ">
       <div class="header p-4 m-3 ">
           <h1 class="m-3">Welcome to your pocket psychologist</h1>
-          <h2>This is our mission and this is what we can do for you❤️</h2>
+          <h2>This is our mission and this is what we can do for you.</h2>
           <p>Pocket-Psycologist is a supportive mobile app designed to help users explore solutions to psychological and mental challenges.
           Through guided questions and mood tracking, it identifies patterns and suggests personalized strategies.
           The app includes breathing exercises, journaling prompts, and scientifically backed coping techniques.
@@ -32,10 +32,14 @@
       </div>
 
       <div class="form-actions">
+        <div class="d-flex justify-content-between">
+        <div>
         <%= f.button :submit, "Sign up" %>
       </div>
     <% end %>
 
-    <%= render "devise/shared/links" %>
+   <div class="login-button"> <%= render "devise/shared/links"  %> </div>
+   </div>
+   </div>
   </div>
 </div>

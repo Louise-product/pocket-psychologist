@@ -1,98 +1,101 @@
 // The main wrapper of the chat page
-.home-page-container {
-  max-width: 800px; // container won’t stretch wider than 800px
-  margin: 32px auto;
-  padding: 32px;
-  background-color: #fefefe;
-  border-radius: 10px;
+.chats.show {
+  .home-page-container {
+    max-width: 800px; // container won’t stretch wider than 800px
+    margin: 32px auto;
+    padding: 32px;
+    background-color: #eae4e4;
+    border-radius: 10px;
 
-  // Back to chat button
-  .back-link {
-    display: inline-block;
-    padding: 8px 16px; // (top/bottom 8px, left/right 16px)
-    background-color: #f5f5f5;
-    border-radius: 6px; // round corners
-    color: #4a90e2; //  text
-    text-decoration: none; // no underline
-
-    &:hover {
-      background-color: #e0e0e0;
-      color: #357ab8;
-    }
-  }
-
-  // Messages container
-  .messages-list {
-    margin-bottom: 32px;
-    display: flex;
-    flex-direction: column; // messages appear after each other
-
-    // Individual message box
-    .message {
-      max-width: 70%; // messages wont stretch
-      padding: 14px 16px; // space inside message bubble
-      margin-bottom: 16px; // space between messages
-      border-radius: 12px; // rounded corners
-      display: inline-block; // width fits content
-      word-wrap: break-word; // long words
-
-      // User messages (right side)
-      &.user {
-        align-self: flex-end; // appear on the right
-        background-color: #c0aad6; //
-        color: #000000; //text
-      }
-
-      // Assistant messages (left side)
-      &.assistant {
-        align-self: flex-start; //appear on the left side
-        background-color: #f8eef5; //
-        color: #333; // text
-      }
-
-      // User / Assistant
-      .message-role {
-        margin-bottom: 8px; // space below
-      }
-
-      // Message text
-      .message-content {
-        margin-bottom: 8px; // space below the message
-      }
-
-      // Message timestamp
-      .message-time {
-        color: #888; //its grey not really visible?
-        font-size: 10px; // smaller font
-      }
-    }
-  }
-
-  // new message form
-  .new-message-form {
-    margin-top: 32px; // space above the form
-
-    // Input and textarea fields
-    input,
-    textarea {
-      width: 100%; // full width
-      padding: 32px; // inner spacing
-      border-radius: 6px; // rounded corners
-      border: 1px solid #ccc;
-      margin-bottom: 16px; // space below each field
-    }
-
-    // Submit button
-    .submit-btn {
-      background-color: #b546cb; // purple button
-      color: #fff; // white text
-      padding: 8px 12px; // inner spacing
-      border-radius: 6px; // rounded corners
-      cursor: pointer; // pointer cursor
+    // Back to chat button
+    .back-link {
+      display: inline-block;
+      padding: 8px 16px; // (top/bottom 8px, left/right 16px)
+      background-color: #6B3F69;
+      border-radius: 6px; // round corners
+      color: #f5eded; //  text
+      text-decoration: none; // no underline
 
       &:hover {
-        background-color: #9135b8; // darker purple on hover
+        background-color: #A376A2;
+        color: #f2f1f1;
+      }
+    }
+
+    // Messages container
+    .messages-list {
+      margin-bottom: 32px;
+      display: flex;
+      flex-direction: column; // messages appear after each other
+
+      // Individual message box
+      .message {
+        max-width: 70%; // messages wont stretch
+        padding: 14px 16px; // space inside message bubble
+        margin-bottom: 16px; // space between messages
+        border-radius: 12px; // rounded corners
+        display: inline-block; // width fits content
+        word-wrap: break-word; // long words
+
+        // User messages (right side)
+        &.user {
+          align-self: flex-end; // appear on the right
+          background-color: #8D5F8C; //
+          color: #f9f9f9; //text
+        }
+
+        // Assistant messages (left side)
+        &.assistant {
+          align-self: flex-start; //appear on the left side
+          background-color: #DDC3C3; //
+          color: #070707; // text
+        }
+
+        // User / Assistant
+        .message-role {
+          margin-bottom: 8px; // space below
+        }
+
+        // Message text
+        .message-content {
+          margin-bottom: 8px; // space below the message
+        }
+
+        // Message timestamp
+        .message-time {
+          color: #3b3434; //its grey not really visible?
+          font-size: 10px; // smaller font
+        }
+      }
+    }
+
+    // new message form
+    .new-message-form {
+      margin-top: 32px; // space above the form
+
+      // Input and textarea fields
+      input,
+      textarea {
+        width: 100%; // full width
+        padding: 32px; // inner spacing
+        border-radius: 6px; // rounded corners
+        border: 1px solid #ccc;
+        margin-bottom: 16px; // space below each field
+      }
+
+      // Submit button
+      .submit-btn {
+        background-color: #6B3F69; // purple button
+        color: #fff; // white text
+        padding: 8px 12px; // inner spacing
+        border-radius: 6px; // rounded corners
+        cursor: pointer; // pointer cursor
+
+        &:hover {
+          background-color: #A376A2; // darker purple on hover
+        }
       }
     }
   }
+
 }

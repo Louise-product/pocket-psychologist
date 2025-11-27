@@ -2,10 +2,11 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_chat
 
-  SYSTEM_PROMPT = "Persona: You are a psychologist focused on mental health, dedicated to listening, providing guidance, and helping users find solutions to feel better. You exhibit compassion, patience, and a strong sense of emotional intelligence.
-  Context: Users seeking your support may wish to express concerns about sensitive or private matters. They are looking for a safe space to discuss their feelings.
-  Task: Interact with users as though you are a human psychologist, offering thoughtful and empathetic responses.
-  Format: Provide clear, reassuring answers that uplift and support the user’s emotional well-being."
+
+  SYSTEM_PROMPT = "You are a psychologist focused on mental health and helping users with solutions to feel better.
+  Context: Users seeking your support may wish to express concerns about sensitive or private matters.
+  Task: Interact with users as though you are a human psychologist.
+  Format: Provide clear answers with solutions that support the user’s emotional well-being."
 
   def new
     @message = @chat.messages.new
@@ -17,19 +18,38 @@ class MessagesController < ApplicationController
     problem_id = @chat[:problem_id]
     @problem = Problem.find(problem_id)
 
-
     if @message.save
-      ruby_llm_chat = RubyLLM.chat
-      response = ruby_llm_chat.with_instructions(instruction_context).ask(@problem.content)
+      @ruby_llm_chat = RubyLLM.chat.with_temperature(0.7)
+      build_conversation_history
+      response = @ruby_llm_chat.with_instructions(instruction_context).ask(@message.content)
       Message.create(chat: @chat, content: response.content, role: "assistant")
-
       # @chat.generate_title_from_user_messages
-
-      redirect_to @chat, notice: "Message sent!"
+      # Respond to Turbo Stream requests
+      respond_to do |format|
+        format.turbo_stream # renders `app/views/messages/create.turbo_stream.erb`
+        format.html { redirect_to chat_path(@chat) }
+      end
     else
-      render :new, status: :unprocessable_entity
+      respond_to do |format|
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("new_message", partial: "messages/form", locals: { chat: @chat, message: @message }) }
+        format.html { render "chats/show", status: :unprocessable_entity }
+      end
     end
   end
+
+  def build_conversation_history
+    @chat.messages.each do |message|
+      @ruby_llm_chat.add_message(message)
+    end
+  end
+
+    # def prefilled
+    #   if @chat.messages.first
+    #     @prefilled = @chat.message.content
+    #   else
+    #     @prefilled = ""
+    #   end
+    # end
 
   private
 
@@ -42,8 +62,6 @@ class MessagesController < ApplicationController
   end
 
   def instruction_context
-
-
     [SYSTEM_PROMPT, current_user.context, @problem.content].compact.join("\n\n")
   end
 end

@@ -11,15 +11,6 @@
   <%# render_markdown converts the weird text into HTML %>
   <div id="messages" class="messages-list">
     <%= render "messages/messages", messages: @chat.messages.order(:created_at) %>
-  <div class="messages-list">
-    <% @chat.messages.order(:created_at).each do |message| %>
-      <div class="message <%= message.role %>">
-        <p class="message-role"><strong><%= message.role.capitalize %>:</strong></p>
-
-        <p class="message-content"><%= raw(render_markdown(message.content)) %></p>
-        <small class="message-time"><%= message.created_at.strftime("%d %b %Y %H:%M") %></small>
-      </div>
-    <% end %>
   </div>
 
 
@@ -33,13 +24,6 @@
 
   <div id="message-form" class="new-message-form">
     <%= render "messages/form", chat: @chat, message: @message %>
-  <div id="new_message_container" class="new-message-form">
-    <%= simple_form_for [@chat, @message] do |f| %>
-      <% prefilled = @chat.messages.any? ? "" : @chat.problem.content %>
-      <%= f.input :content, label: "Ask a question", required: true, input_html: { value: prefilled } %>
-      <%= f.button :submit, 'Ask your Mental health Assistant', class: 'btn btn-primary submit-btn' %>
-
-    <% end %>
   </div>
 </div>
 

@@ -1,15 +1,15 @@
-<div class="side-nav-container text-center p-3 rounded-4 border  position-sticky sticky-top nav flex-column">
+<div class="side-nav-container text-center p-3 rounded-4 border h-100 position-sticky sticky-top nav flex-column">
   <div class="text-start">
      <%= link_to "#", class: "nav-link text-dark ",
     data: { action: "click->toggle#call", toggle_target: "show" } do %>
       <i class=" fa-regular fa-square-caret-left"></i>
     <% end %>
-    <div class="btn btn-primary w-100">Homepage</div>
+    <%= link_to "Homepage", new_problem_path, class: "btn btn-primary w-100" %>
     <hr>
     <h2>Your problems </h2>
     <% current_user.problems.each do |problem| %>
+     <h4><%= problem.title %></h4>
       <div class="nav-item">
-        <h3><%= link_to"#{problem.title}", problem %></h3>
         <hr>
         <% problem.chats.each do |chat| %>
           <h5 class="text-decoration-none"><i class="fa-regular fa-message"></i>

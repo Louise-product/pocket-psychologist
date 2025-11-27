@@ -13,7 +13,7 @@
     <% @chat.messages.order(:created_at).each do |message| %>
       <div class="message <%= message.role %>">
         <p class="message-role"><strong><%= message.role.capitalize %>:</strong></p>
- 
+
         <p class="message-content"><%= raw(render_markdown(message.content)) %></p>
         <small class="message-time"><%= message.created_at.strftime("%d %b %Y %H:%M") %></small>
       </div>
@@ -23,7 +23,7 @@
   <div id="loading" style="display:none;">I am thinking...</div> <!-- Loading Indicator -->
 
   <%= link_to new_problem_path, class: "back-link" do %>
-    <i class="fa fa-arrow-left"></i> Back to Chats
+    <i class="fa fa-arrow-left"></i> Back
   <% end %>
 
   <div id="new_message_container" class="new-message-form">

@@ -1,5 +1,5 @@
 <div class="side-nav-container text-center p-3 rounded-4 border h-100 position-sticky sticky-top nav flex-column">
-  <div class="text-start">
+  <div class="text-start position-relative">
      <%= link_to "#", class: "nav-link text-dark ",
     data: { action: "click->toggle#call", toggle_target: "show" } do %>
       <i class=" fa-regular fa-square-caret-left"></i>
@@ -8,13 +8,16 @@
     <hr>
     <h2>Your problems </h2>
     <% current_user.problems.each do |problem| %>
-     <h4><%= problem.title %></h4>
-      <div class="nav-item">
-        <hr>
+        <% if problem.title.present? %>     
+          <h5 class="problem"><%= problem.title.capitalize %></h5>
+        <% end %>
+        <hr class= "hp">
+      <div class="nav-item hp">
+        
         <% problem.chats.each do |chat| %>
           <h5 class="text-decoration-none"><i class="fa-regular fa-message"></i>
             <% if chat.messages.by_user.any?  %>
-              <%= link_to"#{chat.messages.by_user.first.content.truncate(18, separator: " ")}", chat_path(chat) %>
+              <%= link_to"#{chat.messages.by_user.first.content.truncate(18, separator: " ").capitalize}", chat_path(chat) %>
             <% else %>
               <%= link_to "New Chat", chat_path(chat) %>
             <% end %>

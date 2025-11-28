@@ -16,14 +16,14 @@
         <p class="alert"><%= alert %></p>
         <% if @side_nav %>
           <div class="row position-relative" data-controller="toggle">
-              <%= link_to "#", class: " d-none nav-link text-dark",
+              <%= link_to "#", class: " d-none open-side-nav text-dark",
               data: { action: "click->toggle#call", toggle_target: "show" } do %>
-                <i class="open-side-nav ms-2 fa-regular fa-square-caret-right"></i>
+                <i class="ms-2 fa-regular fa-square-caret-right"></i>
               <% end %>
-            <div class="col-md-2 sidebar pt-1 pb-1" data-toggle-target="hideable">
+            <div class="col-md-3 sidebar pt-1 pb-1" data-toggle-target="hideable">
               <%= render "shared/side_nav", problems: @problems %>
             </div>
-            <div class="col-md-10 my-4">
+            <div class="col-md-9 my-4">
               <%= yield %>
             </div>
           </div>

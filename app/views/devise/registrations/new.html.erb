@@ -33,13 +33,12 @@
 
       <div class="form-actions">
         <div class="d-flex justify-content-between">
-        <div>
-        <%= f.button :submit, "Sign up" %>
+          <%= f.button :submit, "Sign up", class: "button" %>
+          <%= render "devise/shared/links"  %>
+        </div>
       </div>
     <% end %>
 
-   <div class="button login-button"> <%= render "devise/shared/links"  %> </div>
-   </div>
-   </div>
+
   </div>
 </div>

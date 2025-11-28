@@ -1,5 +1,6 @@
 <%# I am making a main wrapper of my page here by making a custom class for styling it in css %>
 <div class="container home-page-container">
+  <%= turbo_stream_from @chat %>
 
   <%# this is where we see chat about: and the title of the current problem %>
   <h1 class="chat-title">Chat about: <%= @chat.problem.title %></h1>
@@ -9,13 +10,8 @@
   <%# this is the wrapper where I see the chat %>
 
   <%# render_markdown converts the weird text into HTML %>
-  <div id="messages" class="messages-list">
+  <div id="messages" class="messages-list" data-controller="move-to-top">
     <%= render "messages/messages", messages: @chat.messages.order(:created_at) %>
-  </div>
-
-
-  <div id="loader">
-    <%= render "messages/loading" %>
   </div>
 
   <%= link_to new_problem_path, class: "back-link" do %>
@@ -26,12 +22,3 @@
     <%= render "messages/form", chat: @chat, message: @message %>
   </div>
 </div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('.new-message-form form'); // Adjust this selector if your form structure is different
-    form.addEventListener('submit', function() {
-      document.getElementById('loading').style.display = 'block'; // Show loading indicator
-    });
-  });
-</script>

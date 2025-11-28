@@ -102,6 +102,7 @@ GEM
     bootstrap (5.3.5)
       popper_js (>= 2.11.8, < 3)
     builder (3.3.0)
+    byebug (12.0.0)
     capybara (3.40.0)
       addressable
       matrix
@@ -112,6 +113,7 @@ GEM
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
     cgi (0.5.0)
+    coderay (1.1.3)
     concurrent-ruby (1.3.5)
     connection_pool (2.5.4)
     crass (1.0.6)
@@ -156,6 +158,9 @@ GEM
       sassc (~> 2.0)
     globalid (1.3.0)
       activesupport (>= 6.1)
+    httplog (1.7.3)
+      rack (>= 2.0)
+      rainbow (>= 2.0.0)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.2.2)
@@ -187,6 +192,7 @@ GEM
       net-smtp
     marcel (1.1.0)
     matrix (0.4.3)
+    method_source (1.1.0)
     mini_mime (1.1.5)
     minitest (5.26.2)
     msgpack (1.8.0)
@@ -232,6 +238,14 @@ GEM
     pp (0.6.3)
       prettyprint
     prettyprint (0.2.0)
+    pry (0.15.2)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
+    pry-byebug (3.11.0)
+      byebug (~> 12.0)
+      pry (>= 0.13, < 0.16)
+    pry-rails (0.3.11)
+      pry (>= 0.13.0)
     psych (5.2.6)
       date
       stringio
@@ -278,6 +292,7 @@ GEM
       thor (~> 1.0, >= 1.2.2)
       tsort (>= 0.2)
       zeitwerk (~> 2.6)
+    rainbow (3.1.1)
     rake (13.3.1)
     rdoc (6.15.1)
       erb
@@ -314,6 +329,8 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 4.0)
       websocket (~> 1.0)
+    solid_cable (1.0.3)
+      rails (< 9)
     sprockets (4.2.2)
       concurrent-ruby (~> 1.0)
       logger
@@ -372,17 +389,21 @@ DEPENDENCIES
   devise
   dotenv-rails
   font-awesome-sass (~> 6.1)
+  httplog
   importmap-rails
   jbuilder
   kramdown
   kramdown-parser-gfm
   pg (~> 1.1)
+  pry-byebug
+  pry-rails
   puma (>= 5.0)
   rails (~> 7.1.6)
   ruby_llm
   sassc-rails
   selenium-webdriver
   simple_form!
+  solid_cable
   sprockets-rails
   stimulus-rails
   turbo-rails

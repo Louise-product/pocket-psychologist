@@ -51,11 +51,16 @@ gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
 gem "devise" #added for authentication
 gem "ruby_llm"
+gem "solid_cable"
 
 group :development, :test do
   gem "dotenv-rails"
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
+
+  gem "httplog"
+  gem "pry-byebug"
+  gem "pry-rails"
 end
 
 group :development do

@@ -36,9 +36,11 @@
           <%= f.button :submit, "Sign up", class: "button" %>
           <%= render "devise/shared/links"  %>
         </div>
+
+        <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+          <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+        <% end %>
       </div>
     <% end %>
-
-
   </div>
 </div>

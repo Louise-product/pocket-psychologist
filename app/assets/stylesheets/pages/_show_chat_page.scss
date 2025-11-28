@@ -17,8 +17,10 @@
       text-decoration: none; // no underline
 
       &:hover {
-        background-color: #A376A2;
-        color: #f2f1f1;
+      background-color: #A376A2;
+      color: white;
+      cursor: pointer;
+      box-shadow:0 8px 16px 0 rgba(0,0,0,0.6);
       }
     }
 

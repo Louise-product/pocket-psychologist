@@ -31,9 +31,10 @@ export default class extends Controller {
       // console.log("hello");
       // debugger;
       // element.style.height = "3500px";
-      const currentMessagesHeight = element.offsetHeight;
-      console.log(currentMessagesHeight);
-      element.style.height = String(currentMessagesHeight + 200) + "px";
+      // const currentMessagesHeight = element.offsetHeight;
+      // console.log(currentMessagesHeight);
+      // element.style.height = String(currentMessagesHeight + 200) + "px";
+      // element.style.marginBottom = "200px";
 
       // element.scrollIntoView(alignToTop);
       window.scrollTo(0, document.body.scrollHeight);

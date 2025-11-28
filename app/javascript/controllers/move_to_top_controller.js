@@ -1,13 +1,48 @@
 import { Controller } from "@hotwired/stimulus";
-import { createConsumer } from "@rails/actioncable";
 
-// Connects to data-controller="move-to-top"
 export default class extends Controller {
   connect() {
-    console.log("hi");
-    this.channel = createConsumer().subscriptions.create(
-      { channel: "ChatChannel", user_id: this.idValue },
-      { received: (data) => this.renderPartial(data) }
-    );
+    console.log("Move-to-top connected");
+
+    this.observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+          // Detect a turbo-stream applied update
+          if (node.nodeType === 1) {
+            // console.log(node.classList[1]);
+            this.handleNewMessage(node);
+          }
+        });
+      });
+    });
+
+    this.observer.observe(document.body, { childList: true, subtree: true });
+  }
+
+  disconnect() {
+    this.observer.disconnect();
+  }
+
+  handleNewMessage(node) {
+    if (node.classList.contains?.("user")) {
+      const element = document.getElementById("messages");
+      // debugger;
+      console.log(element);
+      // console.log("hello");
+      // debugger;
+      // element.style.height = "3500px";
+      const currentMessagesHeight = element.offsetHeight;
+      console.log(currentMessagesHeight);
+      element.style.height = String(currentMessagesHeight + 200) + "px";
+
+      // element.scrollIntoView(alignToTop);
+      window.scrollTo(0, document.body.scrollHeight);
+      // node.style.height = "4000px";
+      // set the height
+      // scroll up
+      // Do whatever (scroll, highlight, notify user, etc)
+    }
   }
 }
+
+// if (node.matches?.("message user"))

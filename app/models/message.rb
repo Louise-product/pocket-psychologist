@@ -13,6 +13,15 @@ class Message < ApplicationRecord
 
   validate :user_message_limit, if: -> { role == "user" }
 
+
+  def assistant?
+    role == "assistant"
+  end
+
+  def user?
+    role == "user"
+  end
+
   private
 
   def user_message_limit

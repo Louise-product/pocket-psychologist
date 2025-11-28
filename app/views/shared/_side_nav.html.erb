@@ -1,10 +1,16 @@
-<div class="side-nav-container text-center p-3 rounded-4 border h-100 position-sticky sticky-top nav flex-column">
-  <div class="text-start position-relative">
-     <%= link_to "#", class: "nav-link text-dark ",
-    data: { action: "click->toggle#call", toggle_target: "show" } do %>
-      <i class=" fa-regular fa-square-caret-left"></i>
-    <% end %>
-    <%= link_to "Homepage", new_problem_path, class: "button btn-home" %>
+<div class="side-nav-container text-center p-3 rounded-4 border mb-0 position-sticky sticky-top nav flex-column">
+  <div class="text-start position-relative ">
+    <div class="d-flex justify-content-between align-items-center cima">
+      <div class="navbar-brand">
+        <%= link_to "#"  do %>
+          <%= image_tag "navbar.JPEG" %>
+        <% end %>
+      </div>
+      <%= link_to "#", class: "nav-link text-dark ",
+      data: { action: "click->toggle#call", toggle_target: "show" } do %>
+        <i class=" fa-regular fa-square-caret-left"></i>
+      <% end %>
+    </div>
     <hr>
     <h2>Your problems </h2>
     <% current_user.problems.each do |problem| %>
@@ -25,5 +31,23 @@
         <% end %>
       </div>
     <% end %>
+    <div class="piede d-flex justify-content-between align-items-center">
+      <i class="fa-solid fa-circle-user avatar dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown"></i>
+      <%#= image_tag "user.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+        <%if user_signed_in?%>
+       
+          <%= link_to "Edit", edit_user_registration_path(current_user), class: "dropdown-item" %>
+          <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
+        <%else%>
+          <%= link_to "Log in", new_user_session_path, class: "dropdown-item"%>
+          <%= link_to "Sign up", new_user_registration_path, class: "dropdown-item"%>
+        <%end%>       
+      </div>
+      <%= link_to  new_problem_path  do %>
+        <i  class="fa-solid fa-house-user d"></i>
+      <% end %>
+    </div>
+    
   </div>
 </div>

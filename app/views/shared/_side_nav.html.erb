@@ -4,7 +4,7 @@
     data: { action: "click->toggle#call", toggle_target: "show" } do %>
       <i class=" fa-regular fa-square-caret-left"></i>
     <% end %>
-    <%= link_to "Homepage", new_problem_path, class: "btn btn-primary w-100" %>
+    <%= link_to "Homepage", new_problem_path, class: "button btn-home" %>
     <hr>
     <h2>Your problems </h2>
     <% current_user.problems.each do |problem| %>

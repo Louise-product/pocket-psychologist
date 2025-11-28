@@ -1,5 +1,5 @@
 <%= simple_form_for [chat, message] do |f| %>
   <% prefilled = chat.messages.any? ? "" : chat.problem.content %>
   <%= f.input :content, label: "Ask a question", required: true, input_html: { value: prefilled } %>
-  <%= f.button :submit, 'Ask your Mental health Assistant', class: 'btn btn-primary submit-btn' %>
+  <%= f.button :submit, 'Ask your Mental health Assistant ☁️', class: 'button btn-primary submit-btn' %>
 <% end %>
